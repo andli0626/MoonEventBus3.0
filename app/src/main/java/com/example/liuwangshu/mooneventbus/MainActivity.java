@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_message;
 
     private Button bt_message;
-    private Button bt_subscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
         tv_message = (TextView) this.findViewById(R.id.tv_message);
         tv_message.setText("MainActivity");
-
-        bt_subscription = (Button) this.findViewById(R.id.bt_subscription);
-        bt_subscription.setText("订阅事件");
 
         bt_message = (Button) this.findViewById(R.id.bt_message);
         bt_message.setText("跳转到SecondActivity");
@@ -39,13 +35,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        bt_subscription.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //注册事件
-                EventBus.getDefault().register(MainActivity.this);
-            }
-        });
+        // 第二步：注册事件
+        EventBus.getDefault().register(MainActivity.this);
 
     }
 
@@ -57,11 +48,13 @@ public class MainActivity extends AppCompatActivity {
         EventBus.getDefault().unregister(this);
     }
 
+    /** 处理 MAIN事件 **/
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMoonEvent(MessageEvent messageEvent) {
         tv_message.setText(messageEvent.getMessage());
     }
 
+    /** 处理 粘性事件 **/
     @Subscribe(sticky = true)
     public void ononMoonStickyEvent(MessageEvent messageEvent) {
         tv_message.setText(messageEvent.getMessage());

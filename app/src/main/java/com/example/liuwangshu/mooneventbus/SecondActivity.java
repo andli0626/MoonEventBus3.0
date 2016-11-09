@@ -19,7 +19,7 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
 
         tv_message = (TextView) this.findViewById(R.id.tv_message);
         tv_message.setText("SecondActivity");
@@ -30,7 +30,10 @@ public class SecondActivity extends AppCompatActivity {
         bt_subscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // 可以先发送事件，后订阅事件
                 EventBus.getDefault().postSticky(new MessageEvent("粘性事件"));
+
                 finish();
             }
         });
@@ -41,7 +44,9 @@ public class SecondActivity extends AppCompatActivity {
         bt_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 EventBus.getDefault().post(new MessageEvent("欢迎关注刘望舒的博客"));
+
                 finish();
             }
         });

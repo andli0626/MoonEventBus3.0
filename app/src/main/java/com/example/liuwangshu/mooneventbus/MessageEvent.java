@@ -1,8 +1,12 @@
 package com.example.liuwangshu.mooneventbus;
 
 /**
- * Created by Administrator on 2016/8/15 0015.
- */
+ * author andli
+ * create at 16/11/9 下午5:07
+ * 第一步：自定义一个事件类
+ **/
+
+
 public class MessageEvent {
 
     private String message;
