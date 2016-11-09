@@ -10,17 +10,23 @@ import org.greenrobot.eventbus.EventBus;
 
 
 public class SecondActivity extends AppCompatActivity {
-    private Button bt_message;
-    private TextView tv_message;
-    private Button bt_subscription;
+
+    private TextView    tv_message;
+
+    private Button      bt_subscription;
+    private Button      bt_message;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tv_message=(TextView)this.findViewById(R.id.tv_message);
+
+        tv_message = (TextView) this.findViewById(R.id.tv_message);
         tv_message.setText("SecondActivity");
-        bt_subscription=(Button)this.findViewById(R.id.bt_subscription);
+
+        bt_subscription = (Button) this.findViewById(R.id.bt_subscription);
         bt_subscription.setText("发送粘性事件");
+
         bt_subscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,8 +34,10 @@ public class SecondActivity extends AppCompatActivity {
                 finish();
             }
         });
-        bt_message=(Button)this.findViewById(R.id.bt_message);
+
+        bt_message = (Button) this.findViewById(R.id.bt_message);
         bt_message.setText("发送事件");
+
         bt_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
